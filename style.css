@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'NewAmsterdam';
+    src: url('Handjet,New_Amsterdam/NewAmsterdam-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Handjet';
+    src: url('Handjet,New_Amsterdam/Handjet-VariableFont_ELGR,ELSH,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Handjet', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+    position: relative;
+}
+
+/* Particle background styling */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure particles stay in the background */
+    background-color: #ffffff; /* Make sure the particle background is white */
+}
+
+/* Content styling */
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure content is above the particles */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pfp {
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image round */
+    margin-bottom: 20px;
+}
+
+.username { 
+    font-family: 'NewAmsterdam', sans-serif; /* Font for the big username */
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #000000; /* Black text color */
+}
+
+.real-name, .title {
+    font-family: 'Handjet', sans-serif; /* Ensure Handjet is applied */
+    font-size: 24px;
+    color: #333333; /* Dark gray for real name */
+    margin-top: 5px;
+}
+
+.title {
+    font-size: 18px; /* Slightly smaller for title */
+    color: #666666; /* Lighter gray for title */
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+/* Social media icons styling */
+.social-links img {
+    width: 30px;
+    height: 30px;
+    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.social-links a:hover img {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(89%) saturate(6413%) hue-rotate(348deg) brightness(104%) contrast(101%);
+    /* This filter creates an orange effect on hover */
+}
