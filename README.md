@@ -69,10 +69,6 @@
 
 ###
 
-<iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2479054" style='border:none;'></iframe>
-
-###
-
 <div align="center">
   <img src="https://profile-counter.glitch.me/xackerlud31337/count.svg?"  />
 </div>
