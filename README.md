@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is Ivan Mandev and I'm a Computer Science student at the University Of Twente</h2>
+<h5 align="left">I am a computer science student in the University Of Twente 🤖🛜👨🏽‍💻</h5>
 
 ###
 
@@ -46,26 +46,6 @@
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="30" alt="c logo"  />
 </div>
-
-###
-
-<div align="left">
-  <a href="https://www.linkedin.com/in/ivan-mandev-327146291/" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" width="47" height="35" alt="linkedin logo"  />
-  </a>
-  <a href="https://x.com/i/flow/login?redirect_after_login=%2Fxackerlud" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" width="47" height="35" alt="twitter logo"  />
-  </a>
-  <a href="https://tryhackme.com/r/p/xackerlud" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/tryhackme/default.svg" width="47" height="35" alt="tryhackme logo"  />
-  </a>
-</div>
-
-###
-
-<br clear="both">
-
-<img src="https://raw.githubusercontent.com/xackerlud31337/xackerlud31337/output/snake.svg" alt="Snake animation" />
 
 ###
 
