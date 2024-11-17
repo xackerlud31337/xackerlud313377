@@ -47,9 +47,8 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="30" alt="c logo"  />
 </div>
 
-###
-
-###
-
  ![Snake animation](https://github.com/eagrundy/eagrundy/blob/output/github-contribution-grid-snake.svg)
 
+### 
+<div align="center"> <img src="https://profile-counter.glitch.me/xackerlud31337/count.svg?"  /> </div> 
+### 
