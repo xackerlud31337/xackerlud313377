@@ -1,6 +1,6 @@
 <h5 align="left">I am a computer science student in the University Of Twente 🤖🛜👨🏽‍💻</h5>
 
-<img align="right" height="150" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3FqODhjdmoxMGk1dnA3MGl3dzZ0MXphd254ZTMxYzU3Y2VrNjMwcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/q8IUDU2cy1eEmld9sR/giphy.webp"  />
+<img align="right" height="150" style="margin-right: 30px;" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3FqODhjdmoxMGk1dnA3MGl3dzZ0MXphd254ZTMxYzU3Y2VrNjMwcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/q8IUDU2cy1eEmld9sR/giphy.webp"  />
 
 ###
 
@@ -23,9 +23,7 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="30" alt="c logo" />
 </div>
 
-
  ![Snake animation](https://github.com/eagrundy/eagrundy/blob/output/github-contribution-grid-snake.svg)
 
 ### 
-<div align="center"> <img src="https://profile-counter.glitch.me/xackerlud31337/count.svg?"  /> </div> 
-
+<div align="center"> <img src="https://profile-counter.glitch.me/xackerlud31337/count.svg?"  /> </div>
