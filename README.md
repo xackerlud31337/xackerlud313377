@@ -1,6 +1,6 @@
 <h5 align="left">I am a computer science student in the University Of Twente 🤖🛜👨🏽‍💻</h5>
 
-<img align="right" height="150" style="margin-right: 30px;" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3FqODhjdmoxMGk1dnA3MGl3dzZ0MXphd254ZTMxYzU3Y2VrNjMwcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/q8IUDU2cy1eEmld9sR/giphy.webp"  />
+<img align="right" height="150" style="margin-right: 100px;" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3FqODhjdmoxMGk1dnA3MGl3dzZ0MXphd254ZTMxYzU3Y2VrNjMwcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/q8IUDU2cy1eEmld9sR/giphy.webp"  />
 
 ###
 
