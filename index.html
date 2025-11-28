@@ -5,44 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xackerlud31337</title>
     
-    <!-- Google Fonts Links -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=New+Amsterdam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=New+Amsterdam&family=VT323&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
-    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <!-- Links to your local files -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/Users/xackerlud/Desktop/3094392.png" type="image/png">
 </head>
 <body>
-    <div id="particles-js"></div> <!-- Particle Background -->
-    
-    <div class="content">
-        <img src="IMG_6801.jpg" alt="Profile Picture" class="pfp">
+
+    <div id="particles-js"></div> 
+
+    <div class="container">
         
-        <h1 class="username">XACKERLUD</h1>
-        <p class="real-name">Ivan S. Mandev</p>
-        <p class="title">Cyber Security / CTF / Pentest</p>
-        
-        <div class="social-links">
-            <a href="https://x.com/xackerlud" target="_blank">
-                <img src="X_logo_2023_original.svg" alt="X Logo">
-            </a>
-            <a href="https://github.com/xackerlud31337" target="_blank">
-                <img src="git.png" alt="GitHub Logo">
-            </a>
-            <a href="https://instagram.com/iv7mnd" target="_blank">
-                <img src="insta-logo.png" alt="Instagram Logo">
-            </a>
-            <a href="https://www.linkedin.com/in/ivan-mandev-327146291" target="_blank">
-                <img src="1051333.png" alt="LinkedIn Logo">
-            </a>
+        <!-- View 1: Profile Card -->
+        <div class="content" id="profile-view">
+            <img src="IMG_6801.jpg" alt="Profile Picture" class="pfp">
+            
+            <h1 class="username">XACKERLUD</h1> 
+            <p class="real-name">Ivan S. Mandev</p> 
+            <p class="title">Cyber Security / CTF / Pentest</p> 
+            
+            <div class="social-links">
+                <a href="https://x.com/xackerlud" target="_blank">
+                    <img src="X_logo_2023_original.svg" alt="X Logo">
+                </a>
+                <a href="https://github.com/xackerlud31337" target="_blank">
+                    <img src="git.png" alt="GitHub Logo">
+                </a>
+                <a href="https://instagram.com/iv7mnd" target="_blank">
+                    <img src="insta-logo.png" alt="Instagram Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/ivan-mandev-327146291" target="_blank">
+                    <img src="1051333.png" alt="LinkedIn Logo">
+                </a>
+            </div>
+
+            <button class="terminal-btn" onclick="toggleTerminal()">
+                <i class="fa-solid fa-terminal"></i> Terminal Mode
+            </button>
         </div>
+
+        <!-- View 2: Terminal Window (Hidden by Default) -->
+        <div class="terminal-window" id="terminal-view">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red" onclick="toggleTerminal()"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="terminal-title">root@xackerlud:~</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <span class="comment">// Type 'ls' to view projects</span>
+                <span class="comment">// Type 'exit' to return to profile</span>
+                <div class="output-area" id="output-area"></div>
+                <div class="input-line">
+                    <span class="prompt">root@xackerlud:~$</span>
+                    <input type="text" class="cmd-input" id="cmd-input" autocomplete="off">
+                </div>
+            </div>
+        </div>
+
     </div>
-    
+
+    <!-- Link to your JS file -->
     <script src="script.js"></script>
 </body>
 </html>
