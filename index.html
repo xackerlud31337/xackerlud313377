@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
 
     <div id="particles-js"></div> 
 
-    <!-- Added 'id="main-container"' to easily target it with JS -->
+    <!-- Main Container -->
     <div class="container" id="main-container">
         
         <!-- View 1: Profile Card -->
@@ -76,10 +76,11 @@
             </div>
         </div>
 
-        <!-- NEW: Minesweeper Window (Hidden by Default) -->
+        <!-- View 3: Minesweeper Window (Hidden by Default) -->
         <div class="terminal-window minesweeper-view" id="minesweeper-view">
             <div class="terminal-header">
                 <div class="terminal-dots">
+                    <!-- Red dot calls closeMinesweeper() to go back to terminal -->
                     <div class="dot red" onclick="closeMinesweeper()"></div>
                 </div>
                 <div class="terminal-title">Minesweeper_v1.0</div>

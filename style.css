@@ -11,6 +11,7 @@ body {
     color: #ffffff;
     height: 100vh;
     width: 100vw;
+    /* Allow scrolling if content gets too tall on small screens */
     overflow-x: hidden; 
     overflow-y: auto; 
     display: flex;
@@ -33,22 +34,13 @@ body {
 .container {
     position: relative;
     z-index: 1;
-    width: 500px; /* Default width */
+    width: 500px;
     max-width: 95%;
     margin: 20px;
-    transition: width 0.5s ease; /* Smooth expansion */
+    transition: width 0.5s ease;
 }
 
-/* When Game is Active: Expand container to fit both windows side-by-side */
-.container.game-active {
-    width: 900px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-/* --- Profile Card --- */
+/* --- Profile Card Styling --- */
 .content {
     text-align: center;
     background: rgba(15, 15, 18, 0.85);
@@ -57,7 +49,7 @@ body {
     backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 255, 0, 0.2);
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
-    width: 100%; /* Fill container */
+    width: 100%;
     transition: all 0.5s ease;
 }
 
@@ -154,9 +146,9 @@ body {
     box-shadow: 0 0 15px rgba(0,255,0,0.5);
 }
 
-/* --- Terminal Window --- */
+/* --- Terminal Window Styling --- */
 .terminal-window {
-    display: none; 
+    display: none; /* Hidden by default */
     background: rgba(10, 10, 10, 0.95);
     width: 100%;
     height: 450px;
@@ -167,11 +159,6 @@ body {
     flex-direction: column;
     overflow: hidden;
     animation: fadeIn 0.5s ease-in-out;
-}
-
-/* If game is active, ensure terminal stays visible alongside game */
-.container.game-active .terminal-window {
-    width: 400px; /* Slightly narrower to fit game */
 }
 
 @keyframes fadeIn {
@@ -240,9 +227,7 @@ body {
 /* --- MINESWEEPER STYLES --- */
 .minesweeper-view {
     display: none; /* Hidden by default */
-    width: 350px !important; /* Fixed width for game */
-    height: 450px;
-    border: 1px solid #00ff00; /* Green border for game */
+    border: 1px solid #00ff00; /* Green border for game look */
 }
 
 .minesweeper-body {
@@ -250,6 +235,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
@@ -257,6 +243,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-width: 300px;
     margin-bottom: 15px;
     color: #00ff00;
     font-family: 'VT323', monospace;
@@ -272,11 +259,12 @@ body {
     padding: 2px 8px;
     font-family: 'VT323', monospace;
 }
+.restart-btn:hover { background: #fff; }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(8, 30px);
-    grid-template-rows: repeat(8, 30px);
+    grid-template-columns: repeat(8, 35px); /* 8 columns, 35px each */
+    grid-template-rows: repeat(8, 35px);    /* 8 rows, 35px each */
     gap: 2px;
     background: #333;
     padding: 5px;
@@ -284,8 +272,8 @@ body {
 }
 
 .cell {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background: #444;
     display: flex;
     align-items: center;
@@ -294,6 +282,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     user-select: none;
+    transition: background 0.1s;
 }
 
 .cell:hover { background: #555; }
@@ -301,36 +290,20 @@ body {
 .cell.mine { background: #ff5f56; color: #000; }
 .cell.flag { color: #ffbd2e; }
 
-/* Responsive Adjustments */
-@media (max-width: 800px) {
-    .container.game-active {
-        width: 100%;
-        flex-direction: column; /* Stack them on mobile */
-        align-items: center;
-    }
-    
-    .container.game-active .terminal-window {
-        width: 100%;
-    }
-
-    .minesweeper-view {
-        width: 100% !important;
-        margin-top: 20px;
-    }
-}
+/* --- RESPONSIVE DESIGN (MOBILE OPTIMIZATION) --- */
 @media (max-width: 600px) {
     .content {
-        padding: 2rem 1.5rem; /* Reduce padding */
+        padding: 2rem 1.5rem;
         width: 100%; 
     }
 
     .pfp {
-        width: 100px; /* Smaller profile pic */
+        width: 100px;
         height: 100px;
     }
 
     .username {
-        font-size: 2.2rem; /* Smaller username */
+        font-size: 2.2rem;
     }
 
     .real-name {
@@ -345,16 +318,23 @@ body {
         gap: 1rem;
     }
 
+    /* Adjust Terminal Height on Mobile */
     .terminal-window {
-        height: 60vh; /* Use 60% of screen height instead of fixed pixels */
+        height: 60vh;
     }
 
     .terminal-body {
-        font-size: 1rem; /* Smaller terminal text */
+        font-size: 1rem;
         padding: 15px;
     }
 
-    .prompt {
-        font-size: 1rem;
+    /* Adjust Minesweeper Grid for Small Screens */
+    .grid {
+        grid-template-columns: repeat(8, 30px);
+        grid-template-rows: repeat(8, 30px);
+    }
+    .cell {
+        width: 30px;
+        height: 30px;
     }
 }

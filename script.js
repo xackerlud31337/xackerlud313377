@@ -25,18 +25,17 @@ function toggleTerminal() {
     const profileView = document.getElementById('profile-view');
     const terminalView = document.getElementById('terminal-view');
     const minesweeperView = document.getElementById('minesweeper-view');
-    const container = document.getElementById('main-container');
     const cmdInput = document.getElementById('cmd-input');
 
+    // If Terminal is currently visible, close it and go back to Profile
     if (terminalView.style.display === 'flex') {
-        // Close everything
         terminalView.style.display = 'none';
-        minesweeperView.style.display = 'none';
+        minesweeperView.style.display = 'none'; 
         profileView.style.display = 'block';
-        container.classList.remove('game-active');
     } else {
-        // Open Terminal
+        // Otherwise, open Terminal and hide others
         profileView.style.display = 'none';
+        minesweeperView.style.display = 'none';
         terminalView.style.display = 'flex';
         setTimeout(() => cmdInput.focus(), 100);
     }
@@ -52,22 +51,27 @@ let tilesClicked = 0;
 let gameOver = false;
 
 function openMinesweeper() {
-    const container = document.getElementById('main-container');
+    const terminalView = document.getElementById('terminal-view');
     const minesweeperView = document.getElementById('minesweeper-view');
     
-    // Add class for side-by-side layout
-    container.classList.add('game-active');
+    // Switch views: Hide Terminal, Show Game
+    terminalView.style.display = 'none';
     minesweeperView.style.display = 'flex';
     
     initMinesweeper();
 }
 
 function closeMinesweeper() {
-    const container = document.getElementById('main-container');
+    const terminalView = document.getElementById('terminal-view');
     const minesweeperView = document.getElementById('minesweeper-view');
+    const cmdInput = document.getElementById('cmd-input');
     
-    container.classList.remove('game-active');
+    // Switch views: Hide Game, Show Terminal (Back to where we came from)
     minesweeperView.style.display = 'none';
+    terminalView.style.display = 'flex';
+    
+    // Focus back on input so user can keep typing
+    setTimeout(() => cmdInput.focus(), 100);
 }
 
 function initMinesweeper() {
