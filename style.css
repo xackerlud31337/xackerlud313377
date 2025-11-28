@@ -1,95 +1,130 @@
-@font-face {
-    font-family: 'NewAmsterdam';
-    src: url('Handjet,New_Amsterdam/NewAmsterdam-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Handjet';
-    src: url('Handjet,New_Amsterdam/Handjet-VariableFont_ELGR,ELSH,wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+/* CSS Reset and Basic Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Handjet', sans-serif; 
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff; /* White background */
+    font-family: 'Handjet', monospace;
+    background-color: #0f0f12; /* Dark background for Cyber Sec vibe */
+    color: #ffffff;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevent scroll bars from particles */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Prevent scrollbars */
     position: relative;
 }
 
-/* Particle background styling */
+/* Particle Container */
 #particles-js {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Ensure particles stay in the background */
-    background-color: #ffffff; /* Make sure the particle background is white */
+    background-color: #0f0f12;
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    z-index: 0;
 }
 
-/* Content styling */
-.container {
-    text-align: center;
+/* Main Content Styling */
+.content {
     position: relative;
-    z-index: 1; /* Ensure content is above the particles */
-    top: 50%;
-    transform: translateY(-50%);
+    z-index: 1; /* Ensure content is above particles */
+    text-align: center;
+    background: rgba(15, 15, 18, 0.7); /* Semi-transparent background */
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+    max-width: 90%;
+    width: 450px;
 }
 
+/* Profile Picture */
 .pfp {
-    width: 150px; /* Adjust size as needed */
-    height: 150px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes the image round */
-    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #00ff00; /* Hacker Green border */
+    object-fit: cover;
+    margin-bottom: 1rem;
+    background-color: #222;
 }
 
-.username { 
-    font-family: 'NewAmsterdam', sans-serif; /* Font for the big username */
-    font-size: 46px;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #000000; /* Black text color */
+/* Username */
+.username {
+    font-family: 'New Amsterdam', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    color: #00ff00; /* Hacker Green */
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
-.real-name, .title {
-    font-family: 'Handjet', sans-serif; /* Ensure Handjet is applied */
-    font-size: 24px;
-    color: #333333; /* Dark gray for real name */
-    margin-top: 5px;
+/* Real Name */
+.real-name {
+    font-family: 'Handjet', monospace;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
 }
 
+/* Title */
 .title {
-    font-size: 18px; /* Slightly smaller for title */
-    color: #666666; /* Lighter gray for title */
+    font-family: 'Handjet', monospace;
+    font-size: 1.2rem;
+    color: #bd93f9; /* Dracula Purple */
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Social Links */
 .social-links {
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
 .social-links a {
-    margin: 0 10px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden; /* Ensures images stay inside circle */
 }
 
-/* Social media icons styling */
 .social-links img {
-    width: 30px;
-    height: 30px;
-    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+    width: 60%; /* Adjusts icon size inside the bubble */
+    height: auto;
+    object-fit: contain;
 }
 
-.social-links a:hover img {
-    filter: brightness(0) saturate(100%) invert(48%) sepia(89%) saturate(6413%) hue-rotate(348deg) brightness(104%) contrast(101%);
-    /* This filter creates an orange effect on hover */
+.social-links a:hover {
+    background: rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+    border: 1px solid #00ff00;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .username {
+        font-size: 2.5rem;
+    }
+    .content {
+        padding: 2rem;
+        width: 90%;
+    }
 }
