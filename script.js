@@ -1,12 +1,12 @@
-// 1. Initialize Particles.js
+// 1. Initialize Particles.js with HACKER GREEN colors
 particlesJS("particles-js", {
     "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#00ff00" },
+        "color": { "value": "#00ff00" }, // Green color
         "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
         "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } },
         "size": { "value": 3, "random": true, "anim": { "enable": false } },
-        "line_linked": { "enable": true, "distance": 150, "color": "#00ff00", "opacity": 0.4, "width": 1 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00ff00", "opacity": 0.4, "width": 1 }, // Green lines
         "move": { "enable": true, "speed": 2.3, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
     },
     "interactivity": {
@@ -24,7 +24,7 @@ particlesJS("particles-js", {
     "retina_detect": true
 });
 
-// 2. Terminal Toggle Function
+// 2. Terminal Toggle Function (MISSING IN YOUR FILE)
 function toggleTerminal() {
     const profileView = document.getElementById('profile-view');
     const terminalView = document.getElementById('terminal-view');
@@ -43,7 +43,7 @@ function toggleTerminal() {
     }
 }
 
-// 3. Terminal Command Handling
+// 3. Terminal Command Handling (MISSING IN YOUR FILE)
 const cmdInput = document.getElementById('cmd-input');
 const outputArea = document.getElementById('output-area');
 const terminalBody = document.getElementById('terminal-body');
