@@ -51,6 +51,9 @@ body {
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
     width: 100%;
     transition: all 0.5s ease;
+    display: flex; /* Added flex to help align children */
+    flex-direction: column;
+    align-items: center; /* Ensures everything inside is centered */
 }
 
 .pfp {
@@ -94,8 +97,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    margin-bottom: 1.5rem; /* Reduced slightly to make room for badge */
+    margin-bottom: 1.5rem; 
     flex-wrap: wrap;
+    width: 100%; /* Ensure it spans width for centering */
 }
 
 .social-links a {
@@ -126,20 +130,19 @@ body {
 /* --- TryHackMe Badge Styling --- */
 .thm-badge-container {
     width: 100%;
-    margin-bottom: 0.5rem; /* REDUCED from 1.5rem to 0.5rem */
+    margin-bottom: 0.5rem; /* Reduced margin */
     display: flex;
-    justify-content: center;
-    align-items: center; 
+    justify-content: center; /* Crucial for centering iframe */
+    align-items: center;
 }
 
 .thm-badge {
     border: none;
-    width: 420px; /* Reduced width slightly to ensure centering */
+    width: 420px; 
     max-width: 100%; 
     height: 130px; 
     overflow: hidden;
-    display: block; 
-    margin: 0 auto; 
+    /* Removed margin: 0 auto; as flexbox handles it now */
 }
 
 .terminal-btn {
@@ -157,6 +160,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    margin-top: 10px; /* Ensure space if badge is missing */
 }
 
 .terminal-btn:hover {
@@ -167,7 +171,7 @@ body {
 
 /* --- Terminal Window Styling --- */
 .terminal-window {
-    display: none; /* Hidden by default */
+    display: none; 
     background: rgba(10, 10, 10, 0.95);
     width: 100%;
     height: 450px;
@@ -245,8 +249,8 @@ body {
 
 /* --- MINESWEEPER STYLES --- */
 .minesweeper-view {
-    display: none; /* Hidden by default */
-    border: 1px solid #00ff00; /* Green border for game look */
+    display: none; 
+    border: 1px solid #00ff00; 
 }
 
 .minesweeper-body {
@@ -282,8 +286,8 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(8, 35px); /* 8 columns, 35px each */
-    grid-template-rows: repeat(8, 35px);    /* 8 rows, 35px each */
+    grid-template-columns: repeat(8, 35px); 
+    grid-template-rows: repeat(8, 35px);    
     gap: 2px;
     background: #333;
     padding: 5px;
@@ -309,7 +313,7 @@ body {
 .cell.mine { background: #ff5f56; color: #000; }
 .cell.flag { color: #ffbd2e; }
 
-/* --- RESPONSIVE DESIGN (MOBILE OPTIMIZATION) --- */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 600px) {
     .content {
         padding: 2rem 1.5rem;
@@ -337,7 +341,6 @@ body {
         gap: 1rem;
     }
 
-    /* Adjust Terminal Height on Mobile */
     .terminal-window {
         height: 60vh;
     }
