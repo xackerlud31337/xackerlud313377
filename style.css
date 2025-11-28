@@ -126,17 +126,20 @@ body {
 /* --- TryHackMe Badge Styling --- */
 .thm-badge-container {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem; /* REDUCED from 1.5rem to 0.5rem */
     display: flex;
     justify-content: center;
+    align-items: center; 
 }
 
 .thm-badge {
     border: none;
-    width: 450px; /* Fixed width prevents stretching */
-    max-width: 100%; /* Ensures it shrinks on mobile */
-    height: 130px; /* Slight height bump to prevent scrollbars */
+    width: 100%; 
+    max-width: 400px; 
+    height: 130px; 
     overflow: hidden;
+    display: block; 
+    margin: 0 auto; 
 }
 
 .terminal-btn {
