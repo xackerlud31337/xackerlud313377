@@ -11,7 +11,6 @@ body {
     color: #ffffff;
     height: 100vh;
     width: 100vw;
-    /* Allow scrolling on small screens if content is too tall */
     overflow-x: hidden; 
     overflow-y: auto; 
     display: flex;
@@ -21,7 +20,7 @@ body {
 }
 
 #particles-js {
-    position: fixed; /* Fixed so it doesn't scroll away */
+    position: fixed;
     width: 100%;
     height: 100%;
     background-color: #0f0f12;
@@ -30,16 +29,26 @@ body {
     left: 0;
 }
 
-/* Container for 3D or layout effects */
+/* Container */
 .container {
     position: relative;
     z-index: 1;
-    width: 500px;
-    max-width: 95%; /* Use 95% width on small screens */
-    margin: 20px; /* Add margin so it doesn't touch edges */
+    width: 500px; /* Default width */
+    max-width: 95%;
+    margin: 20px;
+    transition: width 0.5s ease; /* Smooth expansion */
 }
 
-/* --- Profile Card Styling --- */
+/* When Game is Active: Expand container to fit both windows side-by-side */
+.container.game-active {
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* --- Profile Card --- */
 .content {
     text-align: center;
     background: rgba(15, 15, 18, 0.85);
@@ -48,6 +57,7 @@ body {
     backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 255, 0, 0.2);
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+    width: 100%; /* Fill container */
     transition: all 0.5s ease;
 }
 
@@ -59,7 +69,7 @@ body {
     object-fit: cover;
     margin-bottom: 1rem;
     background-color: #222;
-    transition: all 0.3s ease; /* Smooth resize animation */
+    transition: all 0.3s ease;
 }
 
 .username {
@@ -93,7 +103,7 @@ body {
     justify-content: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap; /* Allow wrapping on very small phones */
+    flex-wrap: wrap;
 }
 
 .social-links a {
@@ -121,7 +131,6 @@ body {
     border: 1px solid #00ff00;
 }
 
-/* --- Terminal Button --- */
 .terminal-btn {
     background: transparent;
     border: 1px solid #00ff00;
@@ -145,9 +154,9 @@ body {
     box-shadow: 0 0 15px rgba(0,255,0,0.5);
 }
 
-/* --- Terminal Window Styling --- */
+/* --- Terminal Window --- */
 .terminal-window {
-    display: none; /* Hidden by default */
+    display: none; 
     background: rgba(10, 10, 10, 0.95);
     width: 100%;
     height: 450px;
@@ -158,6 +167,11 @@ body {
     flex-direction: column;
     overflow: hidden;
     animation: fadeIn 0.5s ease-in-out;
+}
+
+/* If game is active, ensure terminal stays visible alongside game */
+.container.game-active .terminal-window {
+    width: 400px; /* Slightly narrower to fit game */
 }
 
 @keyframes fadeIn {
@@ -200,28 +214,10 @@ body {
     text-align: left;
 }
 
-.output-line {
-    margin-bottom: 5px;
-    word-wrap: break-word; /* Prevents long text from breaking layout */
-}
-
-.comment {
-    color: #666;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.input-line {
-    display: flex;
-    align-items: center;
-}
-
-.prompt {
-    color: #bd93f9;
-    margin-right: 10px;
-    white-space: nowrap; /* Keeps prompt on one line */
-}
-
+.output-line { margin-bottom: 5px; word-wrap: break-word; }
+.comment { color: #666; margin-bottom: 15px; display: block; }
+.input-line { display: flex; align-items: center; }
+.prompt { color: #bd93f9; margin-right: 10px; white-space: nowrap; }
 .cmd-input {
     background: transparent;
     border: none;
@@ -230,7 +226,7 @@ body {
     font-size: 1.2rem;
     outline: none;
     flex-grow: 1;
-    min-width: 0; /* Fix for flexbox input shrinking */
+    min-width: 0; 
 }
 
 .project-link {
@@ -241,7 +237,87 @@ body {
 }
 .project-link:hover { color: #fff; }
 
-/* --- RESPONSIVE DESIGN (MOBILE OPTIMIZATION) --- */
+/* --- MINESWEEPER STYLES --- */
+.minesweeper-view {
+    display: none; /* Hidden by default */
+    width: 350px !important; /* Fixed width for game */
+    height: 450px;
+    border: 1px solid #00ff00; /* Green border for game */
+}
+
+.minesweeper-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+}
+
+.restart-btn {
+    background: #00ff00;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 2px 8px;
+    font-family: 'VT323', monospace;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(8, 30px);
+    grid-template-rows: repeat(8, 30px);
+    gap: 2px;
+    background: #333;
+    padding: 5px;
+    border: 1px solid #555;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cell:hover { background: #555; }
+.cell.revealed { background: #222; color: #fff; cursor: default; }
+.cell.mine { background: #ff5f56; color: #000; }
+.cell.flag { color: #ffbd2e; }
+
+/* Responsive Adjustments */
+@media (max-width: 800px) {
+    .container.game-active {
+        width: 100%;
+        flex-direction: column; /* Stack them on mobile */
+        align-items: center;
+    }
+    
+    .container.game-active .terminal-window {
+        width: 100%;
+    }
+
+    .minesweeper-view {
+        width: 100% !important;
+        margin-top: 20px;
+    }
+}
 @media (max-width: 600px) {
     .content {
         padding: 2rem 1.5rem; /* Reduce padding */

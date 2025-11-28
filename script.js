@@ -1,13 +1,13 @@
-// 1. Initialize Particles.js with HACKER GREEN colors
+// 1. Initialize Particles
 particlesJS("particles-js", {
     "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#00ff00" }, // Green color
+        "number": { "value": 80 },
+        "color": { "value": "#00ff00" },
         "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
-        "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } },
-        "size": { "value": 3, "random": true, "anim": { "enable": false } },
-        "line_linked": { "enable": true, "distance": 150, "color": "#00ff00", "opacity": 0.4, "width": 1 }, // Green lines
-        "move": { "enable": true, "speed": 2.3, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00ff00", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 2.3 }
     },
     "interactivity": {
         "detect_on": "canvas",
@@ -15,76 +15,225 @@ particlesJS("particles-js", {
             "onhover": { "enable": true, "mode": "repulse" },
             "onclick": { "enable": true, "mode": "push" },
             "resize": true
-        },
-        "modes": {
-            "repulse": { "distance": 100, "duration": 0.4 },
-            "push": { "particles_nb": 4 }
         }
     },
     "retina_detect": true
 });
 
-// 2. Terminal Toggle Function (MISSING IN YOUR FILE)
+// 2. Window Toggle Logic
 function toggleTerminal() {
     const profileView = document.getElementById('profile-view');
     const terminalView = document.getElementById('terminal-view');
+    const minesweeperView = document.getElementById('minesweeper-view');
+    const container = document.getElementById('main-container');
     const cmdInput = document.getElementById('cmd-input');
 
     if (terminalView.style.display === 'flex') {
-        // Hide Terminal, Show Profile
+        // Close everything
         terminalView.style.display = 'none';
+        minesweeperView.style.display = 'none';
         profileView.style.display = 'block';
+        container.classList.remove('game-active');
     } else {
-        // Show Terminal, Hide Profile
+        // Open Terminal
         profileView.style.display = 'none';
         terminalView.style.display = 'flex';
-        // Auto-focus the terminal input when opening
         setTimeout(() => cmdInput.focus(), 100);
     }
 }
 
-// 3. Terminal Command Handling (MISSING IN YOUR FILE)
+// 3. Minesweeper Logic
+let board = [];
+const rows = 8;
+const cols = 8;
+const minesCount = 10;
+let minesLocation = [];
+let tilesClicked = 0;
+let gameOver = false;
+
+function openMinesweeper() {
+    const container = document.getElementById('main-container');
+    const minesweeperView = document.getElementById('minesweeper-view');
+    
+    // Add class for side-by-side layout
+    container.classList.add('game-active');
+    minesweeperView.style.display = 'flex';
+    
+    initMinesweeper();
+}
+
+function closeMinesweeper() {
+    const container = document.getElementById('main-container');
+    const minesweeperView = document.getElementById('minesweeper-view');
+    
+    container.classList.remove('game-active');
+    minesweeperView.style.display = 'none';
+}
+
+function initMinesweeper() {
+    board = [];
+    minesLocation = [];
+    tilesClicked = 0;
+    gameOver = false;
+    document.getElementById("game-status").innerText = "Playing";
+    document.getElementById("mine-count").innerText = minesCount;
+
+    // Generate Mines
+    let minesLeft = minesCount;
+    while (minesLeft > 0) {
+        let r = Math.floor(Math.random() * rows);
+        let c = Math.floor(Math.random() * cols);
+        let id = r.toString() + "-" + c.toString();
+        if (!minesLocation.includes(id)) {
+            minesLocation.push(id);
+            minesLeft -= 1;
+        }
+    }
+
+    // Generate Grid UI
+    const grid = document.getElementById("minesweeper-grid");
+    grid.innerHTML = "";
+    for (let r = 0; r < rows; r++) {
+        let row = [];
+        for (let c = 0; c < cols; c++) {
+            let tile = document.createElement("div");
+            tile.id = r.toString() + "-" + c.toString();
+            tile.classList.add("cell");
+            tile.addEventListener("click", clickTile);
+            tile.addEventListener("contextmenu", flagTile); // Right click
+            grid.appendChild(tile);
+            row.push(tile);
+        }
+        board.push(row);
+    }
+}
+
+function flagTile(e) {
+    e.preventDefault();
+    if (gameOver || this.classList.contains("revealed")) return;
+    
+    if (this.innerText === "") {
+        this.innerText = "🚩";
+        this.classList.add("flag");
+    } else if (this.innerText === "🚩") {
+        this.innerText = "";
+        this.classList.remove("flag");
+    }
+}
+
+function clickTile() {
+    if (gameOver || this.classList.contains("revealed") || this.classList.contains("flag")) return;
+
+    if (minesLocation.includes(this.id)) {
+        gameOver = true;
+        document.getElementById("game-status").innerText = "GAME OVER";
+        document.getElementById("game-status").style.color = "red";
+        revealMines();
+        return;
+    }
+
+    let coords = this.id.split("-");
+    let r = parseInt(coords[0]);
+    let c = parseInt(coords[1]);
+    checkMine(r, c);
+}
+
+function revealMines() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            let tile = board[r][c];
+            if (minesLocation.includes(tile.id)) {
+                tile.innerText = "💣";
+                tile.classList.add("mine");
+            }
+        }
+    }
+}
+
+function checkMine(r, c) {
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return;
+    if (board[r][c].classList.contains("revealed")) return;
+
+    board[r][c].classList.add("revealed");
+    tilesClicked += 1;
+
+    let minesFound = 0;
+
+    // Check neighbors
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            let nr = r + i;
+            let nc = c + j;
+            if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+                if (minesLocation.includes(nr + "-" + nc)) {
+                    minesFound += 1;
+                }
+            }
+        }
+    }
+
+    if (minesFound > 0) {
+        board[r][c].innerText = minesFound;
+        // Color coding numbers
+        if(minesFound == 1) board[r][c].style.color = "#00ff00";
+        else if(minesFound == 2) board[r][c].style.color = "#ffff00";
+        else board[r][c].style.color = "#ff5f56";
+    } else {
+        // Recursively check neighbors if empty
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                checkMine(r + i, c + j);
+            }
+        }
+    }
+
+    if (tilesClicked == rows * cols - minesCount) {
+        document.getElementById("game-status").innerText = "YOU WIN!";
+        document.getElementById("game-status").style.color = "#00ff00";
+        gameOver = true;
+    }
+}
+
+
+// 4. Command Input Handler
 const cmdInput = document.getElementById('cmd-input');
 const outputArea = document.getElementById('output-area');
 const terminalBody = document.getElementById('terminal-body');
 
-// Focus input if user clicks anywhere in terminal body
-terminalBody.addEventListener('click', function() {
-    cmdInput.focus();
-});
+if(terminalBody) {
+    terminalBody.addEventListener('click', () => cmdInput.focus());
+}
 
-cmdInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        const command = cmdInput.value.trim().toLowerCase();
-        
-        // 1. Print the user's prompt and command to history
-        outputArea.innerHTML += `<div class="output-line"><span class="prompt">root@xackerlud:~$</span> ${cmdInput.value}</div>`;
+if(cmdInput) {
+    cmdInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const command = cmdInput.value.trim().toLowerCase();
+            outputArea.innerHTML += `<div class="output-line"><span class="prompt">root@xackerlud:~$</span> ${cmdInput.value}</div>`;
 
-        // 2. Process Commands
-        if (command === 'ls') {
-            // List Projects with your specific links
-            outputArea.innerHTML += `
-                <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" class="project-link">CaptureGo</a></div>
-                <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" class="project-link">Parser_In_Haskell</a></div>
-                <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/BotNet" target="_blank" class="project-link">BotNet</a></div>
-                <div class="output-line">-rwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337" target="_blank" class="project-link">README.md</a></div>
-            `;
-        } else if (command === 'help') {
-            outputArea.innerHTML += `<div class="output-line">Available commands: ls, clear, exit</div>`;
-        } else if (command === 'clear') {
-            outputArea.innerHTML = '';
-        } else if (command === 'exit') {
-            toggleTerminal();
-            cmdInput.value = ''; 
-            return;
-        } else if (command !== '') {
-            outputArea.innerHTML += `<div class="output-line">bash: ${command}: command not found</div>`;
+            if (command === 'ls') {
+                outputArea.innerHTML += `
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" class="project-link">CaptureGo</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" class="project-link">Parser_In_Haskell</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/BotNet" target="_blank" class="project-link">BotNet</a></div>
+                    <div class="output-line">-rwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337" target="_blank" class="project-link">README.md</a></div>
+                `;
+            } else if (command === 'minesweeper') {
+                outputArea.innerHTML += `<div class="output-line">Launching Minesweeper protocol...</div>`;
+                openMinesweeper();
+            } else if (command === 'help') {
+                outputArea.innerHTML += `<div class="output-line">Available commands: ls, minesweeper, clear, exit</div>`;
+            } else if (command === 'clear') {
+                outputArea.innerHTML = '';
+            } else if (command === 'exit') {
+                toggleTerminal();
+                cmdInput.value = '';
+                return;
+            } else if (command !== '') {
+                outputArea.innerHTML += `<div class="output-line">bash: ${command}: command not found</div>`;
+            }
+
+            if(terminalBody) terminalBody.scrollTop = terminalBody.scrollHeight;
+            cmdInput.value = '';
         }
-
-        // 3. Auto Scroll to bottom
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-
-        // 4. Clear Input
-        cmdInput.value = '';
-    }
-});
+    });
+}
