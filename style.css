@@ -134,8 +134,8 @@ body {
 
 .thm-badge {
     border: none;
-    width: 100%; 
-    max-width: 400px; 
+    width: 420px; /* Reduced width slightly to ensure centering */
+    max-width: 100%; 
     height: 130px; 
     overflow: hidden;
     display: block; 
