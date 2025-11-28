@@ -34,7 +34,7 @@ body {
 .container {
     position: relative;
     z-index: 1;
-    width: 500px;
+    width: 600px; /* INCREASED from 500px to make everything bigger */
     max-width: 95%;
     margin: 20px;
     transition: width 0.5s ease;
@@ -138,11 +138,9 @@ body {
 
 .thm-badge {
     border: none;
-    width: 420px; 
-    max-width: 100%; 
-    height: 130px; 
+    width: 100%; /* Set to 100% to fill the new bigger container */
+    height: 150px; /* Increased height slightly */
     overflow: hidden;
-    /* Removed margin: 0 auto; as flexbox handles it now */
 }
 
 .terminal-btn {
