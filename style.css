@@ -1,4 +1,4 @@
-* CSS Reset */
+/* CSS Reset */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,9 @@ body {
     color: #ffffff;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    /* Allow scrolling on small screens if content is too tall */
+    overflow-x: hidden; 
+    overflow-y: auto; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,11 +21,13 @@ body {
 }
 
 #particles-js {
-    position: absolute;
+    position: fixed; /* Fixed so it doesn't scroll away */
     width: 100%;
     height: 100%;
     background-color: #0f0f12;
     z-index: 0;
+    top: 0;
+    left: 0;
 }
 
 /* Container for 3D or layout effects */
@@ -31,7 +35,8 @@ body {
     position: relative;
     z-index: 1;
     width: 500px;
-    max-width: 90%;
+    max-width: 95%; /* Use 95% width on small screens */
+    margin: 20px; /* Add margin so it doesn't touch edges */
 }
 
 /* --- Profile Card Styling --- */
@@ -54,6 +59,7 @@ body {
     object-fit: cover;
     margin-bottom: 1rem;
     background-color: #222;
+    transition: all 0.3s ease; /* Smooth resize animation */
 }
 
 .username {
@@ -87,6 +93,7 @@ body {
     justify-content: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on very small phones */
 }
 
 .social-links a {
@@ -195,7 +202,7 @@ body {
 
 .output-line {
     margin-bottom: 5px;
-    word-wrap: break-word;
+    word-wrap: break-word; /* Prevents long text from breaking layout */
 }
 
 .comment {
@@ -212,6 +219,7 @@ body {
 .prompt {
     color: #bd93f9;
     margin-right: 10px;
+    white-space: nowrap; /* Keeps prompt on one line */
 }
 
 .cmd-input {
@@ -222,6 +230,7 @@ body {
     font-size: 1.2rem;
     outline: none;
     flex-grow: 1;
+    min-width: 0; /* Fix for flexbox input shrinking */
 }
 
 .project-link {
@@ -232,8 +241,44 @@ body {
 }
 .project-link:hover { color: #fff; }
 
-/* Responsive */
+/* --- RESPONSIVE DESIGN (MOBILE OPTIMIZATION) --- */
 @media (max-width: 600px) {
-    .username { font-size: 2.5rem; }
-    .content { padding: 2rem; width: 95%; }
+    .content {
+        padding: 2rem 1.5rem; /* Reduce padding */
+        width: 100%; 
+    }
+
+    .pfp {
+        width: 100px; /* Smaller profile pic */
+        height: 100px;
+    }
+
+    .username {
+        font-size: 2.2rem; /* Smaller username */
+    }
+
+    .real-name {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .terminal-window {
+        height: 60vh; /* Use 60% of screen height instead of fixed pixels */
+    }
+
+    .terminal-body {
+        font-size: 1rem; /* Smaller terminal text */
+        padding: 15px;
+    }
+
+    .prompt {
+        font-size: 1rem;
+    }
 }
