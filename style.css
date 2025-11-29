@@ -138,7 +138,10 @@ body {
 
 .thm-badge {
     border: none;
-    width: 100%; /* Set to 100% to fill the new bigger container */
+    display: block;
+    margin: 0 auto;
+    width: 360px; /* Match the badge's natural width */
+    max-width: 100%; /* Keep responsive on small screens */
     height: 150px; /* Increased height slightly */
     overflow: hidden;
 }
