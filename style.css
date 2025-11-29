@@ -34,7 +34,7 @@ body {
 .container {
     position: relative;
     z-index: 1;
-    width: 520px; /* Slightly reduced so the card fits more comfortably */
+    width: 500px; /* Slightly reduced so the card fits more comfortably */
     max-width: 95%;
     margin: 20px;
     transition: width 0.5s ease;
