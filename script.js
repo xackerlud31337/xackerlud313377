@@ -219,6 +219,7 @@ if(cmdInput) {
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" class="project-link">CaptureGo</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" class="project-link">Parser_In_Haskell</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/BotNet" target="_blank" class="project-link">BotNet</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/python_facial_recognition" target="_blank" class="project-link">Python_Facial_Recognition</a></div>
                     <div class="output-line">-rwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337" target="_blank" class="project-link">README.md</a></div>
                 `;
             } else if (command === 'minesweeper') {
