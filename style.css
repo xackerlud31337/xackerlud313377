@@ -88,30 +88,22 @@ body {
     font-family: 'Handjet', monospace;
     font-size: 1.2rem;
     color: #bd93f9;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .email-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    display: inline-block;
     max-width: 100%;
-    margin-bottom: 1.75rem;
-    color: #e0e0e0;
+    margin-bottom: 2rem;
+    color: #bd93f9;
     font-family: 'Handjet', monospace;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1.2;
     text-decoration: none;
     overflow-wrap: anywhere;
-    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.email-link i {
-    color: #00ff00;
-    flex: 0 0 auto;
+    transition: text-shadow 0.3s ease;
 }
 
 .email-link span {
@@ -120,9 +112,7 @@ body {
 }
 
 .email-link:hover {
-    color: #00ff00;
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.45);
-    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(189, 147, 249, 0.45);
 }
 
 .social-links {
