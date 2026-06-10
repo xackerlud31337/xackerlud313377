@@ -88,9 +88,41 @@ body {
     font-family: 'Handjet', monospace;
     font-size: 1.2rem;
     color: #bd93f9;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.email-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    margin-bottom: 1.75rem;
+    color: #e0e0e0;
+    font-family: 'Handjet', monospace;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.email-link i {
+    color: #00ff00;
+    flex: 0 0 auto;
+}
+
+.email-link span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.email-link:hover {
+    color: #00ff00;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.45);
+    transform: translateY(-2px);
 }
 
 .social-links {
@@ -335,6 +367,10 @@ body {
     }
 
     .title {
+        font-size: 1rem;
+    }
+
+    .email-link {
         font-size: 1rem;
     }
 
