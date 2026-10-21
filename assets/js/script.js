@@ -80,6 +80,7 @@ function initMinesweeper() {
     tilesClicked = 0;
     gameOver = false;
     document.getElementById("game-status").innerText = "Playing";
+    document.getElementById("game-status").style.color = "";
     document.getElementById("mine-count").innerText = minesCount;
 
     // Generate Mines
@@ -179,8 +180,8 @@ function checkMine(r, c) {
     if (minesFound > 0) {
         board[r][c].innerText = minesFound;
         // Color coding numbers
-        if(minesFound == 1) board[r][c].style.color = "#00ff00";
-        else if(minesFound == 2) board[r][c].style.color = "#ffff00";
+        if (minesFound == 1) board[r][c].style.color = "#00ff00";
+        else if (minesFound == 2) board[r][c].style.color = "#ffff00";
         else board[r][c].style.color = "#ff5f56";
     } else {
         // Recursively check neighbors if empty
@@ -204,31 +205,46 @@ const cmdInput = document.getElementById('cmd-input');
 const outputArea = document.getElementById('output-area');
 const terminalBody = document.getElementById('terminal-body');
 
-if(terminalBody) {
+// Prints user-controlled text safely (textContent, never innerHTML)
+function printLine(text, withPrompt = false) {
+    const line = document.createElement('div');
+    line.className = 'output-line';
+    if (withPrompt) {
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = 'root@xackerlud:~$ ';
+        line.appendChild(prompt);
+    }
+    line.appendChild(document.createTextNode(text));
+    outputArea.appendChild(line);
+}
+
+if (terminalBody) {
     terminalBody.addEventListener('click', () => cmdInput.focus());
 }
 
-if(cmdInput) {
+if (cmdInput) {
     cmdInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             const command = cmdInput.value.trim().toLowerCase();
-            outputArea.innerHTML += `<div class="output-line"><span class="prompt">root@xackerlud:~$</span> ${cmdInput.value}</div>`;
+            printLine(cmdInput.value, true);
 
             if (command === 'ls') {
-                outputArea.innerHTML += `
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" class="project-link">CaptureGo</a></div>
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" class="project-link">Parser_In_Haskell</a></div>
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/python_facial_recognition" target="_blank" class="project-link">Python_Facial_Recognition</a></div>
-                    <div class="output-line">-rwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337" target="_blank" class="project-link">README.md</a></div>
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/gym-tracker" target="_blank" class="project-link">Gym_Tracker</a></div>
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/scarpingWorldometer" target="_blank" class="project-link">Scraping_Worldometer</a></div>
-                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/worldcup-predictor" target="_blank" class="project-link">SportMath</a></div>
-                `;
+                // Fixed, hardcoded HTML only: safe to use innerHTML here
+                outputArea.insertAdjacentHTML('beforeend', `
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" rel="noopener noreferrer" class="project-link">CaptureGo</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" rel="noopener noreferrer" class="project-link">Parser_In_Haskell</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/python_facial_recognition" target="_blank" rel="noopener noreferrer" class="project-link">Python_Facial_Recognition</a></div>
+                    <div class="output-line">-rwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337" target="_blank" rel="noopener noreferrer" class="project-link">README.md</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/gym-tracker" target="_blank" rel="noopener noreferrer" class="project-link">Gym_Tracker</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/scarpingWorldometer" target="_blank" rel="noopener noreferrer" class="project-link">Scraping_Worldometer</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/worldcup-predictor" target="_blank" rel="noopener noreferrer" class="project-link">SportMath</a></div>
+                `);
             } else if (command === 'minesweeper') {
-                outputArea.innerHTML += `<div class="output-line">Launching Minesweeper protocol...</div>`;
+                printLine('Launching Minesweeper protocol...');
                 openMinesweeper();
             } else if (command === 'help') {
-                outputArea.innerHTML += `<div class="output-line">Available commands: ls, minesweeper, clear, exit</div>`;
+                printLine('Available commands: ls, minesweeper, clear, exit');
             } else if (command === 'clear') {
                 outputArea.innerHTML = '';
             } else if (command === 'exit') {
@@ -236,11 +252,17 @@ if(cmdInput) {
                 cmdInput.value = '';
                 return;
             } else if (command !== '') {
-                outputArea.innerHTML += `<div class="output-line">bash: ${command}: command not found</div>`;
+                printLine(`bash: ${command}: command not found`);
             }
 
-            if(terminalBody) terminalBody.scrollTop = terminalBody.scrollHeight;
+            if (terminalBody) terminalBody.scrollTop = terminalBody.scrollHeight;
             cmdInput.value = '';
         }
     });
 }
+
+// 5. Button handlers (replaces inline onclick, so CSP can block inline scripts)
+document.querySelector('.terminal-btn').addEventListener('click', toggleTerminal);
+document.querySelector('#terminal-view .dot.red').addEventListener('click', toggleTerminal);
+document.querySelector('#minesweeper-view .dot.red').addEventListener('click', closeMinesweeper);
+document.querySelector('.restart-btn').addEventListener('click', initMinesweeper);
