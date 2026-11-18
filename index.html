@@ -63,7 +63,7 @@
                 <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2479054" class="thm-badge"></iframe>
             </div>
 
-            <button class="terminal-btn" onclick="toggleTerminal()">
+            <button class="terminal-btn">
                 <i class="fa-solid fa-terminal"></i> Projects
             </button>
         </div>
@@ -72,7 +72,7 @@
         <div class="terminal-window" id="terminal-view">
             <div class="terminal-header">
                 <div class="terminal-dots">
-                    <div class="dot red" onclick="toggleTerminal()"></div>
+                    <div class="dot red"></div>
                     <div class="dot yellow"></div>
                     <div class="dot green"></div>
                 </div>
@@ -95,14 +95,14 @@
             <div class="terminal-header">
                 <div class="terminal-dots">
                     <!-- Red dot calls closeMinesweeper() to go back to terminal -->
-                    <div class="dot red" onclick="closeMinesweeper()"></div>
+                    <div class="dot red"></div>
                 </div>
                 <div class="terminal-title">Minesweeper_v1.0</div>
             </div>
             <div class="minesweeper-body">
                 <div class="game-info">
                     <span>Mines: <span id="mine-count">10</span></span>
-                    <button class="restart-btn" onclick="initMinesweeper()">R</button>
+                    <button class="restart-btn">R</button>
                     <span id="game-status">Playing</span>
                 </div>
                 <div class="grid" id="minesweeper-grid">
