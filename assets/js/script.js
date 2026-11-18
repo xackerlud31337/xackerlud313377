@@ -239,6 +239,8 @@ if (cmdInput) {
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/gym-tracker" target="_blank" rel="noopener noreferrer" class="project-link">Gym_Tracker</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/scarpingWorldometer" target="_blank" rel="noopener noreferrer" class="project-link">Scraping_Worldometer</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/worldcup-predictor" target="_blank" rel="noopener noreferrer" class="project-link">SportMath</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/nvidiahackaton" target="_blank" rel="noopener noreferrer" class="project-link">ReconTriage</a></div>
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/sec-header-scanner" target="_blank" rel="noopener noreferrer" class="project-link">Sec_Header_Scanner</a></div>
                 `);
             } else if (command === 'minesweeper') {
                 printLine('Launching Minesweeper protocol...');
