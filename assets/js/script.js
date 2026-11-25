@@ -232,6 +232,7 @@ if (cmdInput) {
             if (command === 'ls') {
                 // Fixed, hardcoded HTML only: safe to use innerHTML here
                 outputArea.insertAdjacentHTML('beforeend', `
+                    <div class="output-line">drwx------ 1 xackerlud staff <a href="https://xackerlud31337.github.io/chessgame/" target="_blank" rel="noopener noreferrer" class="project-link">Chess_Vision_Trainer</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/CaptureGo" target="_blank" rel="noopener noreferrer" class="project-link">CaptureGo</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/Parser_In_Haskell" target="_blank" rel="noopener noreferrer" class="project-link">Parser_In_Haskell</a></div>
                     <div class="output-line">drwx------ 1 xackerlud staff <a href="https://github.com/xackerlud31337/python_facial_recognition" target="_blank" rel="noopener noreferrer" class="project-link">Python_Facial_Recognition</a></div>
